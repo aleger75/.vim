@@ -6,14 +6,9 @@
 "    By: aleger <aleger@student.42.fr>              +#+  +:+       +#+         "
 "                                                 +#+#+#+#+#+   +#+            "
 "    Created: 2014/03/14 02:04:10 by aleger            #+#    #+#              "
-"    Updated: 2015/03/11 13:49:54 by aleger           ###   ########.fr        "
+"    Updated: 2015/04/22 13:58:34 by aleger           ###   ########.fr        "
 "                                                                              "
 " **************************************************************************** "
-
-augroup reload_vimrc " {
-	autocmd!
-	autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
 
 execute pathogen#infect()
 set nocompatible
@@ -36,6 +31,7 @@ syntax on
 set scrolloff=5
 set autoindent
 set smartindent
+set colorcolumn=80
 
 filetype plugin indent on
 
@@ -68,18 +64,17 @@ set wildignore+=*.pyc "Python Object codes"
 set wildignore+=*.orig "Merge resolution files"
 
 
-" Prevent cursor going back on espace
+" Prevent cursor going back when pressing escape
 let CursorColumnI = 0
 autocmd InsertEnter * let CursorColumnI = col('.')
 autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif"
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
 " WEB | JS | PHP
 autocmd FileType htmldjango,html,css,js,php,javascript set tabstop=2
 autocmd FileType htmldjango,html,css,js,php,javascript set shiftwidth=2
 autocmd FileType htmldjango,html,css,js,php,javascript set softtabstop=2
 autocmd FileType htmldjango,html,css,js,php,javascript set expandtab
-autocmd FileType htmldjango,html,css,js,php,javascript set colorcolumn=120
 
 " JS
 let g:used_javascript_libs = 'jquery,angularjs,angularui'
@@ -89,7 +84,6 @@ autocmd FileType python,ruby,coffee set tabstop=4
 autocmd FileType python,ruby,coffee set shiftwidth=4
 autocmd FileType python,ruby,coffee set softtabstop=4
 autocmd FileType python,ruby,coffee set expandtab
-autocmd FileType python,ruby,coffee set colorcolumn=120
 
 " Emmet
 let g:user_emmet_install_global = 0
@@ -103,22 +97,8 @@ let g:ctrlp_working_path_mode = 'ra'
 " NerdTree
 map <C-t> :NERDTreeToggle<CR>
 
-imap <Esc>Oq                            1
-imap <Esc>Or                            2
-imap <Esc>Os                            3
-imap <Esc>Ot                            4
-imap <Esc>Ou                            5
-imap <Esc>Ov                            6
-imap <Esc>Ow                            7
-imap <Esc>Ox                            8
-imap <Esc>Oy                            9
-imap <Esc>Op                            0
-imap <Esc>On                            .
-imap <Esc>OR                            *
-imap <Esc>OQ                            /
-imap <Esc>Ol                            +
-imap <Esc>OS                            -
-imap <Esc>OX                            =
+" Airline
+let g:airline_theme="solarized"
 
 imap <silent> jj <Esc>
 
